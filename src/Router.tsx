@@ -7,6 +7,8 @@ import NotFound from './components/NotFound'
 import Error from './components/Error'
 import User from './components/User'
 import Followers from './components/user/Followers'
+import Coins from './routes/Coins'
+import Coin from './routes/Coin'
 
 const Router = createBrowserRouter([
     {
@@ -17,26 +19,12 @@ const Router = createBrowserRouter([
         children: [
             {
                 path: '',
-                element: <Home/>,
+                element: <Coins/>,
                 errorElement: <Error/>, //컴포넌트충동
-                children: [
-                    {
-                        path: '/user/:userId',
-                        element: <User/>,
-                        children:  [
-                            {
-                                path: 'followers',
-                                element: <Followers/>
-                            }
-                        ]
-                    }
-                    //path: '/user/:userId',
-                    //children와 다른점
-                ]
             },
             {
-                path: 'about', // '/about'은 일종의 '/'의 자식
-                element: <About/>
+                path: '/:coinId',
+                element: <Coin/>
             }
         ],
         

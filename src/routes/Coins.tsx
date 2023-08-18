@@ -1,4 +1,4 @@
 function Coins (){
-    return <></>
+    return <>Coins</>
 }
 export default Coins

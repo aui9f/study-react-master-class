@@ -60,6 +60,7 @@ function App() {
     }
     a{
       text-decoration: none;
+      color: #c8c8c8;
     }
 
     body {

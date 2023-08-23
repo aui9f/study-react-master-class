@@ -24,7 +24,15 @@ const Coin = styled.li`
     margin-bottom: 4px;
     background-color: gray;
     color: ${props=>props.theme.textColor};
+    a{
+        display: flex;
+        align-items: center;
+        img{
+            margin-right: 4px;
+        }
+    }
 `;
+
 const Title = styled.h1`
     font-size: 2rem;
     color: ${props=>props.theme.accentColor};
@@ -61,10 +69,20 @@ function Coins (){
             </Header>
             <CoinsList>
                 {
-                    isLoading ? '...Loading...':
-                    coins.map(coin=><Coin key={coin.id}>
-                        <Link to={`/${coin.id}`}>{coin.name} &rarr;</Link>
-                    </Coin>)
+                    isLoading ? 
+                    '...Loading...' :
+                    coins.map(coin=>
+                        <Coin key={coin.id}>
+                            {/* 페이지로 정보 전달하기 [state] */}
+                        <Link to={`/${coin.id}`} state={{
+                            name: coin.name,
+                            
+                        }}>
+                            <img src={`https://raw.githubusercontent.com/ErikThiart/cryptocurrency-icons/master/16/${coin.name.toLowerCase().split(" ").join("-")}.png`} />
+                            {coin.name} &rarr;
+                        </Link>
+                        </Coin>
+                    )
                 }
             </CoinsList>
         </Container>

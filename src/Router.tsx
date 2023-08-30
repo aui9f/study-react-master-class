@@ -9,6 +9,8 @@ import User from './components/User'
 import Followers from './components/user/Followers'
 import Coins from './routes/Coins'
 import Coin from './routes/Coin'
+import Chart from './components/coin/Chart'
+import Price from './components/coin/Price'
 
 const Router = createBrowserRouter([
     {
@@ -24,7 +26,15 @@ const Router = createBrowserRouter([
             },
             {
                 path: '/:coinId',
-                element: <Coin/>
+                element: <Coin/>,
+                children: [{
+                    path: '/:coinId/chart',
+                    element: <Chart/>,
+                },
+            {
+                    path: '/:coinId/price',
+                    element: <Price/>,
+                }]
             }
         ],
         

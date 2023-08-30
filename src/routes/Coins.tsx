@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
+import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
 import { styled } from "styled-components"
+import { fetchCoins } from "../api";
 
 
 const Container = styled.div`
@@ -51,17 +53,9 @@ interface CoinInterface {
 
 
 function Coins (){
-    const [coins, setCoins] = useState<CoinInterface[]>([]);
-    const [isLoading, setIsLoding] = useState<boolean>(true);
-    useEffect(()=>{
-        (async()=>{
-            const response = await fetch('https://api.coinpaprika.com/v1/coins');
-            const json = await response.json();
-            setCoins(json.slice(0,100));
-            setIsLoding(false);
-        })()
-        
-    }, [])
+    const {isLoading, data} = useQuery<CoinInterface[]>(["allCoins"], fetchCoins)
+    //@tanstack/react-query에서 useQuery를 사용할때 query key의 값은 대괄호로 묶어줘야합니다
+
     return <>
         <Container>
             <Header>
@@ -71,7 +65,7 @@ function Coins (){
                 {
                     isLoading ? 
                     '...Loading...' :
-                    coins.map(coin=>
+                    data?.slice(0,10).map(coin=>
                         <Coin key={coin.id}>
                             {/* 페이지로 정보 전달하기 [state] */}
                         <Link to={`/${coin.id}`} state={{

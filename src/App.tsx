@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import Header from "./components/Header";
 import { createGlobalStyle } from "styled-components";
-
+import { ReactQueryDevtools } from 'react-query/devtools'; 
 
 function App() {
   //전체에 적용
@@ -73,6 +73,7 @@ function App() {
     <GlobalStyle/>
     <Header/>
     <Outlet/> {/* children이 렌더링 */}
+    <ReactQueryDevtools initialIsOpen={true}/>
   </>
 }
 export default App;

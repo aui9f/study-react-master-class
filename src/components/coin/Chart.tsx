@@ -3,6 +3,8 @@ import { useOutletContext } from "react-router-dom";
 import { fetchCoinHistory } from "../../api";
 import ApexChart from "react-apexcharts";
 import moment from 'moment';
+import { useRecoilValue } from "recoil";
+import { isDarkAtom } from "../../atoms";
 
 // import { useParams } from "react-router-dom";
 interface ICharProps{
@@ -23,15 +25,14 @@ interface IHistorical{
 function Chart(){
     const {coinId} = useOutletContext<ICharProps>();
     const {isLoading, data} = useQuery<IHistorical[]>(['chlcv', []], ()=>fetchCoinHistory(coinId))
-    console.log('[[data]] ',data)
-    // const {coinId} = useParams() as {coinId: string};
-    // console.log('[coinId ',coinId)
+    
+    const isDark = useRecoilValue(isDarkAtom);
     return <div>
 
         {isLoading?'Loading Chart.. ':<ApexChart type="line" 
         options = {{
             theme: {
-                mode: 'dark',
+                mode: isDark?'dark':'light',
             },
             colors: ['yellow', 'gray'],
             fill: {

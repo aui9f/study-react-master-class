@@ -2,9 +2,14 @@ import { Outlet } from "react-router-dom";
 import Header from "./components/Header";
 import { createGlobalStyle } from "styled-components";
 import { ReactQueryDevtools } from 'react-query/devtools'; 
+import { ThemeProvider } from 'styled-components';
+import { lightTheme, darkTheme, theme } from './theme';
+import { useState } from "react";
+import { useRecoilValue } from "recoil";
+import { isDarkAtom } from "./atoms";
 
-function App() {
   //전체에 적용
+  // https://velog.io/@rmaomina/cssom-import-css-wraning
   const GlobalStyle = createGlobalStyle`
     @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap');
 
@@ -69,11 +74,19 @@ function App() {
       color: ${props=>props.theme.textColor}
     }
   `
+
+function App() {
+
+  const isDark = useRecoilValue(isDarkAtom)
+
   return <>
+  <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
+    {/* <button onClick={toggleTheme}>TEST</button> */}
     <GlobalStyle/>
     <Header/>
     <Outlet/> {/* children이 렌더링 */}
     <ReactQueryDevtools initialIsOpen={true}/>
+  </ThemeProvider>
   </>
 }
 export default App;

@@ -3,6 +3,8 @@ import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
 import { styled } from "styled-components"
 import { fetchCoins } from "../api";
+import { useSetRecoilState } from "recoil";
+import { isDarkAtom } from "../atoms";
 
 
 const Container = styled.div`
@@ -24,7 +26,7 @@ const Coin = styled.li`
     border: 1px solid;
     border-radius: 4px;
     margin-bottom: 4px;
-    background-color: gray;
+    background-color: ${props=>props.theme.accentColor};
     color: ${props=>props.theme.textColor};
     a{
         display: flex;
@@ -55,11 +57,14 @@ interface CoinInterface {
 function Coins (){
     const {isLoading, data} = useQuery<CoinInterface[]>(["allCoins"], fetchCoins)
     //@tanstack/react-query에서 useQuery를 사용할때 query key의 값은 대괄호로 묶어줘야합니다
+    const setDarkAtom = useSetRecoilState(isDarkAtom);
+    const toggleDarkAtom = () => setDarkAtom(prev=>!prev);
 
     return <>
         <Container>
             <Header>
                 <Title>Coin</Title>
+                <button onClick={toggleDarkAtom}>Toggle Mode</button>
             </Header>
             <CoinsList>
                 {

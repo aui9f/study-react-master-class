@@ -11,6 +11,7 @@ import Chart from './components/coin/Chart'
 import Price from './components/coin/Price'
 import CoinProject from './routes/CoinProject'
 import About from './routes/About'
+import TodoProejct from './routes/TodoProejct'
 
 
 
@@ -21,21 +22,25 @@ const Router = createBrowserRouter([
         errorElement: <NotFound/>, //URL이 없을 경우
         
         children: [{
-                path: '/coin-project',
+                path: '/coin',
                 element: < CoinProject / > ,
             },
             {
-                path: '/coin-project/:coinId',
+                path: '/coin/:coinId',
                 element: < Coin / > ,
                 children: [{
-                        path: '/coin-project/:coinId/chart',
+                        path: '/coin/:coinId/chart',
                         element: < Chart / > ,
                     },
                     {
-                        path: '/coin-project/:coinId/price',
+                        path: '/coin/:coinId/price',
                         element: < Price / > ,
                     }
                 ]
+            }, 
+            {
+                path: '/todo',
+                element: <TodoProejct/>
             }
 
 

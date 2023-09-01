@@ -46,8 +46,8 @@ const Header = () => {
         <ul>
             <li><Link to={'/'}>Home</Link></li>
             {/* <li><button onClick={onAboutClick}>About</button> </li> */}
-            <li><Link to={'/coin-project'}>Coin Project</Link></li>
-            <li><Link to={'/about'}>Todo Project</Link></li>
+            <li><Link to={'/coin'}>Coin Project</Link></li>
+            <li><Link to={'/todo'}>Todo Project</Link></li>
         </ul>
         <Toggle className={isDark?'dark':'light'} onClick={toggleDarkAtom}></Toggle>
     </TopHeader>

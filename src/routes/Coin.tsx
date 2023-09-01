@@ -191,8 +191,8 @@ function Coin (){
 
         <Teb>
             <li className={priceMatch !==null ? 'isActive'  : ''}>
-                <Link to={`/coin-project/${coinId}/chart`}>chart</Link></li>
-            <li><Link to={`/coin-project/${coinId}/price`}>price</Link></li>
+                <Link to={`/coin/${coinId}/chart`}>chart</Link></li>
+            <li><Link to={`/coin/${coinId}/price`}>price</Link></li>
         </Teb>
 
 

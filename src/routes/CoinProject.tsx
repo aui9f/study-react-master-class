@@ -71,7 +71,7 @@ function CoinProject (){
                     data?.slice(0,10).map(coin=>
                         <Coin key={coin.id}>
                             {/* 페이지로 정보 전달하기 [state] */}
-                        <Link to={`/coin-project/${coin.id}`} state={{
+                        <Link to={`/coin/${coin.id}`} state={{
                             name: coin.name,
                             
                         }}>

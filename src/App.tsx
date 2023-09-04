@@ -11,7 +11,7 @@ import { isDarkAtom } from "./atoms";
   //전체에 적용
   // https://velog.io/@rmaomina/cssom-import-css-wraning
   const GlobalStyle = createGlobalStyle`
-    @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap');
+    /* @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap'); */
 
     html, body, div, span, applet, object, iframe,
     h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -69,7 +69,6 @@ import { isDarkAtom } from "./atoms";
     }
 
     body {
-      font-family: 'Source Sans Pro', sans-serif;
       background-color: ${props=>props.theme.bgColor};
       color: ${props=>props.theme.textColor}
     }
